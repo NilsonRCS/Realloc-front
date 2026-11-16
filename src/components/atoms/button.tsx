@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/cn";
 
@@ -15,27 +16,27 @@ const sizes: Record<Size, string> = {
   lg: "px-6 py-3",
 };
 
-type ButtonProps = ComponentPropsWithoutRef<"a"> & {
-  variant?: Variant;
-  size?: Size;
-};
+type Style = { variant?: Variant; size?: Size };
 
-/** Link estilizado como botão (todas as CTAs da landing navegam). */
-export function Button({
-  variant = "primary",
-  size = "lg",
-  className,
-  ...props
-}: ButtonProps) {
-  return (
-    <a
-      className={cn(
-        "inline-block rounded-lg font-semibold transition",
-        variants[variant],
-        sizes[size],
-        className,
-      )}
-      {...props}
-    />
+function styles({ variant = "primary", size = "lg" }: Style, className?: string) {
+  return cn(
+    "inline-block rounded-lg font-semibold transition disabled:cursor-not-allowed disabled:opacity-60",
+    variants[variant],
+    sizes[size],
+    className,
   );
+}
+
+type ButtonProps = Style & ComponentPropsWithoutRef<"button">;
+
+/** Botão de ação (submit, etc.). Para navegação use ButtonLink. */
+export function Button({ variant, size, className, type = "button", ...props }: ButtonProps) {
+  return <button type={type} className={styles({ variant, size }, className)} {...props} />;
+}
+
+type ButtonLinkProps = Style & ComponentPropsWithoutRef<typeof Link>;
+
+/** Link de navegação com aparência de botão. */
+export function ButtonLink({ variant, size, className, ...props }: ButtonLinkProps) {
+  return <Link className={styles({ variant, size }, className)} {...props} />;
 }

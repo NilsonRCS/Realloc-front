@@ -4,14 +4,14 @@ O front-end segue **Atomic Design** sobre o App Router do Next.js.
 
 ```
 src/
-├── app/                 # Páginas (rotas) - apenas composição
+├── app/                 # Rotas, agrupadas por route groups: (marketing) e (auth)
 ├── components/
 │   ├── atoms/           # Menor unidade, sem regra de negócio (Button, Badge, Heading...)
 │   ├── molecules/       # Atoms combinados com uma função única (FeatureCard, StepItem...)
 │   ├── organisms/       # Seções completas da interface (Header, Hero, FeaturesSection...)
-│   └── templates/       # Layout da página, sem conteúdo (LandingTemplate)
+│   └── templates/       # Layout da página, sem conteúdo (LandingTemplate, AuthTemplate)
 ├── content/             # Textos e dados estáticos tipados, separados da UI
-└── lib/                 # Utilitários puros (cn)
+└── lib/                 # Utilitários puros (cn) e rotas (routes.ts)
 ```
 
 ## Regras
@@ -32,3 +32,16 @@ src/
 2. Monte as seções em `organisms/`.
 3. Crie um template se o layout for diferente.
 4. Componha tudo em `app/<rota>/page.tsx`.
+
+## Rotas
+
+Usamos [route groups](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups)
+para separar contextos sem afetar a URL, mantendo um único root layout:
+
+| URL      | Arquivo                              | Template          |
+| -------- | ------------------------------------ | ----------------- |
+| `/`      | `app/(marketing)/page.tsx`           | `LandingTemplate` |
+| `/login` | `app/(auth)/login/page.tsx`          | `AuthTemplate`    |
+
+Os caminhos ficam centralizados em `src/lib/routes.ts`; nunca escreva URLs soltas nos componentes.
+Futuras áreas autenticadas entram em um grupo próprio, como `app/(app)/dashboard`.

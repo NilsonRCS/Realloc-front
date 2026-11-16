@@ -1,6 +1,7 @@
-import { Button, Container, Logo } from "@/components/atoms";
+import { ButtonLink, Container, Logo } from "@/components/atoms";
 import { NavLinks } from "@/components/molecules";
 import { navItems } from "@/content/landing";
+import { routes } from "@/lib/routes";
 
 export function Header() {
   return (
@@ -8,7 +9,14 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between">
         <Logo />
         <NavLinks items={navItems} />
-        <Button href="#contato" size="md">Solicitar demo</Button>
+        <div className="flex items-center gap-3">
+          <ButtonLink href={routes.login} variant="outline" size="md">
+            Entrar
+          </ButtonLink>
+          <ButtonLink href="#contato" size="md" className="hidden sm:inline-block">
+            Solicitar demo
+          </ButtonLink>
+        </div>
       </Container>
     </header>
   );

@@ -1,4 +1,4 @@
-import { Button, Heading } from "@/components/atoms";
+import { ButtonLink, Heading } from "@/components/atoms";
 import { brand, cta } from "@/content/landing";
 
 export function CtaSection() {
@@ -7,13 +7,13 @@ export function CtaSection() {
       <div className="mx-auto max-w-4xl rounded-3xl bg-brand px-8 py-16 text-center text-brand-foreground">
         <Heading level={2}>{cta.title}</Heading>
         <p className="mx-auto mt-4 max-w-xl opacity-90">{cta.description}</p>
-        <Button
+        <ButtonLink
           href={`mailto:${brand.contactEmail}`}
           variant="inverse"
           className="mt-8"
         >
           {cta.button}
-        </Button>
+        </ButtonLink>
       </div>
     </section>
   );
