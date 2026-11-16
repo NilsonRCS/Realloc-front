@@ -1,3 +1,4 @@
+export { ComingSoon } from "./coming-soon";
 export { CtaSection } from "./cta-section";
 export { DashboardHome } from "./dashboard-home";
 export { FeaturesSection } from "./features-section";
@@ -6,3 +7,5 @@ export { Header } from "./header";
 export { Hero } from "./hero";
 export { HowItWorksSection } from "./how-it-works-section";
 export { LoginForm } from "./login-form";
+export { PageSkeleton } from "./page-skeleton";
+export { Sidebar } from "./sidebar";

@@ -45,3 +45,10 @@ para separar contextos sem afetar a URL, mantendo um único root layout:
 
 Os caminhos ficam centralizados em `src/lib/routes.ts`; nunca escreva URLs soltas nos componentes.
 Futuras áreas autenticadas entram em um grupo próprio, como `app/(app)/dashboard`.
+
+### Área logada
+
+Cada item do menu lateral é uma **rota real** (`next/link`), não estado no cliente:
+o layout `(app)/layout.tsx` (menu) persiste e só o conteúdo troca, com prefetch automático.
+Telas com dados dinâmicos devem colocá-los em `<Suspense>` (um por bloco) ou usar
+`loading.tsx`; o esqueleto padrão fica em `(app)/loading.tsx`.

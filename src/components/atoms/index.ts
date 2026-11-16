@@ -5,3 +5,4 @@ export { Heading } from "./heading";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Logo } from "./logo";
+export { Skeleton } from "./skeleton";
