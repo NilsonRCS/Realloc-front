@@ -1,3 +1,4 @@
+export { AppHeader } from "./app-header";
 export { ComingSoon } from "./coming-soon";
 export { CtaSection } from "./cta-section";
 export { DashboardHome } from "./dashboard-home";
